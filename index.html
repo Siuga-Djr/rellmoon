@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>$RellMoon — To The Moon</title>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#07060f;color:#fff;font-family:'Barlow',sans-serif;overflow-x:hidden}
+.halftone{background-image:radial-gradient(circle,#ffffff06 1px,transparent 1px);background-size:20px 20px}
+
+/* NAV */
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 40px;border-bottom:1px solid #f5c84220;background:#07060fee;position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+.nav-logo{font-family:'Bangers',cursive;font-size:26px;color:#f5c842;letter-spacing:3px}
+.nav-links{display:flex;gap:28px}
+.nav-links a{color:#ffffff99;font-size:14px;text-decoration:none;transition:color .2s;font-weight:600;letter-spacing:.5px}
+.nav-links a:hover{color:#f5c842}
+.nav-cta{background:#f5c842;color:#07060f;border:none;padding:9px 22px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;letter-spacing:.5px;transition:opacity .2s;text-decoration:none}
+.nav-cta:hover{opacity:.85}
+
+/* HERO */
+.hero{display:flex;flex-direction:column;align-items:center;padding:80px 24px 60px;text-align:center;position:relative;overflow:hidden}
+.hero-bg-text{position:absolute;font-family:'Bangers',cursive;font-size:220px;color:#f5c84206;letter-spacing:-5px;top:-20px;left:50%;transform:translateX(-50%);white-space:nowrap;pointer-events:none}
+.badge{display:inline-flex;align-items:center;gap:8px;background:#f5c84215;border:1px solid #f5c84240;color:#f5c842;font-size:11px;padding:6px 14px;border-radius:20px;margin-bottom:28px;letter-spacing:2px;font-weight:700}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;animation:blink 1.4s ease-in-out infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+.coin-wrap{position:relative;margin-bottom:32px;width:220px;height:220px;display:flex;align-items:center;justify-content:center}
+.coin-glow{position:absolute;inset:-40px;border-radius:50%;background:#f5c84212;animation:pulse 2.5s ease-in-out infinite}
+.coin-ring{position:absolute;inset:-10px;border-radius:50%;border:2px solid #f5c84240;animation:spin 8s linear infinite}
+.coin-ring2{position:absolute;inset:-20px;border-radius:50%;border:1px dashed #f5c84225;animation:spin 14s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.4}50%{transform:scale(1.08);opacity:.9}}
+.coin{width:200px;height:200px;border-radius:50%;background:#f5c842;border:4px solid #d4a010;display:flex;align-items:center;justify-content:center;position:relative;z-index:2;overflow:hidden}
+.coin-img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.coin-fallback{font-size:72px;line-height:1}
+
+h1.main{font-family:'Bangers',cursive;font-size:88px;line-height:.9;margin-bottom:14px;letter-spacing:2px}
+.gold{color:#f5c842}
+.hero-desc{font-size:18px;color:#ffffffaa;max-width:500px;line-height:1.65;margin-bottom:36px;font-weight:400}
+.hero-desc strong{color:#f5c842;font-weight:700}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.btn-main{background:#f5c842;color:#07060f;border:none;padding:15px 36px;border-radius:25px;font-size:16px;font-weight:700;cursor:pointer;transition:opacity .2s;text-decoration:none;font-family:'Barlow',sans-serif;letter-spacing:.5px}
+.btn-main:hover{opacity:.85}
+.btn-ghost{background:transparent;color:#f5c842;border:2px solid #f5c84250;padding:15px 36px;border-radius:25px;font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;text-decoration:none;font-family:'Barlow',sans-serif}
+.btn-ghost:hover{border-color:#f5c842;background:#f5c84210}
+
+/* TICKER */
+.ticker{background:#f5c842;padding:11px 0;overflow:hidden;white-space:nowrap}
+.ticker-inner{display:inline-flex;animation:tick 22s linear infinite}
+.tick-item{color:#07060f;font-size:12px;font-weight:700;letter-spacing:2.5px;padding:0 28px}
+.tick-sep{color:#07060t;font-size:10px;padding:0 4px;opacity:.5}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+section{padding:80px 40px;max-width:960px;margin:0 auto}
+.sec-eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;color:#f5c842;margin-bottom:12px;opacity:.8}
+.sec-title{font-family:'Bangers',cursive;font-size:44px;color:#fff;margin-bottom:12px;letter-spacing:1px;line-height:1}
+.sec-title span{color:#f5c842}
+.sec-sub{font-size:16px;color:#ffffff77;line-height:1.7;margin-bottom:48px;max-width:560px}
+
+/* WHY CARDS */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.why-card{background:#0e0d1c;border:1px solid #f5c84220;border-radius:16px;padding:24px;transition:border-color .25s,transform .25s;cursor:default}
+.why-card:hover{border-color:#f5c84270;transform:translateY(-3px)}
+.why-card-top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.why-icon{width:42px;height:42px;border-radius:12px;background:#f5c84215;border:1px solid #f5c84230;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.why-card h3{font-size:15px;font-weight:700;color:#f5c842;line-height:1.3}
+.why-card p{font-size:14px;color:#ffffff66;line-height:1.7}
+
+/* HYPE BANNER */
+.hype-banner{background:linear-gradient(135deg,#f5c84212,#7c3aed10);border:1px solid #f5c84228;border-radius:18px;padding:30px 36px;display:flex;align-items:center;gap:32px;flex-wrap:wrap;margin-top:24px}
+.hype-text{flex:1;min-width:220px}
+.hype-text h3{font-family:'Bangers',cursive;font-size:24px;color:#fff;margin-bottom:8px;letter-spacing:.5px}
+.hype-text p{font-size:14px;color:#ffffff77;line-height:1.65}
+.hype-stats{display:flex;gap:36px}
+.hype-stat{text-align:center}
+.hype-num{font-family:'Bangers',cursive;font-size:44px;color:#f5c842;line-height:1;letter-spacing:1px}
+.hype-lbl{font-size:10px;color:#ffffff55;letter-spacing:2px;margin-top:4px;font-weight:700}
+
+/* TOKENOMICS */
+.toko-section{background:#0e0d1c;border-radius:20px;padding:36px;border:1px solid #f5c84218}
+.toko-bars{display:flex;flex-direction:column;gap:14px;margin-bottom:28px}
+.toko-row{display:flex;align-items:center;gap:16px}
+.toko-label{font-size:14px;color:#ffffffaa;width:170px;flex-shrink:0;font-weight:600}
+.toko-bar-wrap{flex:1;height:8px;background:#ffffff0d;border-radius:4px;overflow:hidden}
+.toko-bar{height:100%;border-radius:4px;background:#f5c842}
+.toko-pct{font-size:14px;font-weight:700;color:#f5c842;width:40px;text-align:right;flex-shrink:0}
+.ca-section{background:#07060f;border:1px dashed #f5c84235;border-radius:14px;padding:22px 26px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ca-lbl{font-size:10px;color:#ffffff44;letter-spacing:2px;margin-bottom:7px;font-weight:700}
+.ca-addr{font-size:14px;color:#f5c842;font-family:monospace;word-break:break-all}
+.ca-btn{background:#f5c84218;border:1px solid #f5c84235;color:#f5c842;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;transition:background .2s;white-space:nowrap;font-family:'Barlow',sans-serif}
+.ca-btn:hover{background:#f5c84235}
+
+/* ROADMAP */
+.road-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.road-card{background:#0e0d1c;border:1px solid #ffffff12;border-radius:16px;padding:22px;position:relative;overflow:hidden;transition:border-color .2s}
+.road-card.active{border-color:#f5c84245}
+.road-card.active::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:#f5c842}
+.road-phase{font-size:10px;font-weight:700;letter-spacing:2px;color:#ffffff44;margin-bottom:10px}
+.road-card.active .road-phase{color:#f5c842}
+.road-title{font-family:'Bangers',cursive;font-size:20px;color:#fff;margin-bottom:12px;letter-spacing:.5px;line-height:1.2}
+.road-items{display:flex;flex-direction:column;gap:7px}
+.road-item{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#ffffff66;line-height:1.4}
+.road-dot{width:5px;height:5px;border-radius:50%;background:#f5c84250;flex-shrink:0;margin-top:5px}
+.road-card.active .road-dot{background:#f5c842}
+.road-card.done .road-dot{background:#4ade80}
+.road-tag{display:inline-block;font-size:10px;font-weight:700;padding:3px 10px;border-radius:10px;margin-bottom:12px;letter-spacing:.5px}
+.road-tag.done{background:#4ade8018;color:#4ade80;border:1px solid #4ade8035}
+.road-tag.now{background:#f5c84218;color:#f5c842;border:1px solid #f5c84235}
+.road-tag.next{background:#7c3aed18;color:#a78bfa;border:1px solid #7c3aed35}
+.road-tag.big{background:#e11d4818;color:#f87171;border:1px solid #e11d4835}
+
+/* COMMUNITY */
+.social-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.social-card{background:#0e0d1c;border:1px solid #ffffff12;border-radius:16px;padding:24px 26px;text-decoration:none;display:flex;align-items:center;gap:18px;transition:border-color .2s,transform .2s}
+.social-card:hover{border-color:#f5c84270;transform:translateY(-3px)}
+.social-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.social-card.tw .social-icon{background:#1da1f215;border:1px solid #1da1f225}
+.social-card.dc .social-icon{background:#5865f215;border:1px solid #5865f225}
+.social-name{font-size:16px;font-weight:700;color:#fff;margin-bottom:4px}
+.social-sub{font-size:13px;color:#ffffff55}
+.social-arrow{margin-left:auto;color:#f5c84260;font-size:20px;transition:transform .2s}
+.social-card:hover .social-arrow{transform:translateX(3px);color:#f5c842}
+
+/* FOOTER */
+footer{border-top:1px solid #ffffff0d;padding:36px 40px;text-align:center}
+.footer-logo{font-family:'Bangers',cursive;font-size:28px;color:#f5c842;letter-spacing:3px;margin-bottom:10px}
+footer p{font-size:13px;color:#ffffff44;line-height:1.8}
+.disc{font-size:11px;color:#ffffff22;margin-top:10px;max-width:620px;margin-left:auto;margin-right:auto;line-height:1.7}
+
+/* SCROLL ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body class="halftone">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">$RELLMOON</div>
+  <div class="nav-links">
+    <a href="#why">Why</a>
+    <a href="#tokenomics">Tokenomics</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#join">Community</a>
+  </div>
+  <a href="#join" class="nav-cta">Join now</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg-text">RELLMOON</div>
+  <div class="badge"><span class="badge-dot"></span> LIVE — COMMUNITY BUILDING</div>
+  <div class="coin-wrap">
+    <div class="coin-glow"></div>
+    <div class="coin-ring"></div>
+    <div class="coin-ring2"></div>
+    <div class="coin">
+      <span class="coin-fallback">🌕</span>
+    </div>
+  </div>
+  <h1 class="main"><span class="gold">$RELL</span>MOON</h1>
+  <p class="hero-desc">The memecoin of the most hyped Roblox game ever — <strong>Rell Sea</strong>. Built on One Piece energy. Launching when the game drops end of 2026.</p>
+  <div class="hero-btns">
+    <a href="#join" class="btn-main">Join the crew 🏴‍☠️</a>
+    <a href="#why" class="btn-ghost">Why $RellMoon?</a>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="tick-item">$RELLMOON</span><span class="tick-sep">✦</span>
+    <span class="tick-item">TO THE MOON</span><span class="tick-sep">✦</span>
+    <span class="tick-item">RELL SEA</span><span class="tick-sep">✦</span>
+    <span class="tick-item">ONE PIECE</span><span class="tick-sep">✦</span>
+    <span class="tick-item">#1 MOST AWAITED ROBLOX GAME</span><span class="tick-sep">✦</span>
+    <span class="tick-item">DEVIL FRUIT GAINS</span><span class="tick-sep">✦</span>
+    <span class="tick-item">END OF 2026</span><span class="tick-sep">✦</span>
+    <span class="tick-item">$RELLMOON</span><span class="tick-sep">✦</span>
+    <span class="tick-item">TO THE MOON</span><span class="tick-sep">✦</span>
+    <span class="tick-item">RELL SEA</span><span class="tick-sep">✦</span>
+    <span class="tick-item">ONE PIECE</span><span class="tick-sep">✦</span>
+    <span class="tick-item">#1 MOST AWAITED ROBLOX GAME</span><span class="tick-sep">✦</span>
+    <span class="tick-item">DEVIL FRUIT GAINS</span><span class="tick-sep">✦</span>
+    <span class="tick-item">END OF 2026</span><span class="tick-sep">✦</span>
+  </div>
+</div>
+
+<!-- WHY -->
+<section id="why">
+  <div class="fade-up">
+    <div class="sec-eyebrow">WHY $RELLMOON</div>
+    <h2 class="sec-title">Three reasons this <span>hits different</span></h2>
+    <p class="sec-sub">Most memecoins have nothing behind them. We've got the biggest Roblox hype, the world's most popular manga, and perfect timing.</p>
+  </div>
+  <div class="why-grid fade-up">
+    <div class="why-card">
+      <div class="why-card-top">
+        <div class="why-icon">🎮</div>
+        <h3>#1 Most Awaited Roblox Game</h3>
+      </div>
+      <p>Rell Sea is the most anticipated game on Roblox right now. Organic hype is building every day — and the game isn't even out yet.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-card-top">
+        <div class="why-icon">🏴‍☠️</div>
+        <h3>Powered by One Piece</h3>
+      </div>
+      <p>One Piece is the #1 manga on the planet with hundreds of millions of fans worldwide. That's your built-in audience.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-card-top">
+        <div class="why-icon">⏳</div>
+        <h3>We launch WITH the game</h3>
+      </div>
+      <p>Rell Sea drops end of 2026. We're building the community NOW so when the hype explodes — we're already there.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-card-top">
+        <div class="why-icon">🚀</div>
+        <h3>Mooning is in the name</h3>
+      </div>
+      <p>RellMoon = Rell Sea + "mooning". When a crypto goes parabolic, that's mooning. We're not being subtle about our ambitions.</p>
+    </div>
+  </div>
+  <div class="hype-banner fade-up">
+    <div class="hype-text">
+      <h3>Early community. Maximum potential.</h3>
+      <p>We're tiny now — that's the point. The best time to board a pirate ship is before it sets sail. Early holders always win hardest.</p>
+    </div>
+    <div class="hype-stats">
+      <div class="hype-stat"><div class="hype-num" id="tw-count">9</div><div class="hype-lbl">TWITTER</div></div>
+      <div class="hype-stat"><div class="hype-num" id="dc-count">15</div><div class="hype-lbl">DISCORD</div></div>
+      <div class="hype-stat"><div class="hype-num">2026</div><div class="hype-lbl">LAUNCH</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TOKENOMICS -->
+<section id="tokenomics">
+  <div class="fade-up">
+    <div class="sec-eyebrow">TOKENOMICS</div>
+    <h2 class="sec-title">Fair. <span>Transparent. Degenerate.</span></h2>
+    <p class="sec-sub">No hidden wallets. No rug pulls. Just a community-first distribution built for the long run.</p>
+  </div>
+  <div class="toko-section fade-up">
+    <div class="toko-bars">
+      <div class="toko-row"><span class="toko-label">Public Liquidity</span><div class="toko-bar-wrap"><div class="toko-bar" style="width:50%"></div></div><span class="toko-pct">50%</span></div>
+      <div class="toko-row"><span class="toko-label">Marketing & Growth</span><div class="toko-bar-wrap"><div class="toko-bar" style="width:20%"></div></div><span class="toko-pct">20%</span></div>
+      <div class="toko-row"><span class="toko-label">Community Rewards</span><div class="toko-bar-wrap"><div class="toko-bar" style="width:15%"></div></div><span class="toko-pct">15%</span></div>
+      <div class="toko-row"><span class="toko-label">Team & Dev</span><div class="toko-bar-wrap"><div class="toko-bar" style="width:10%"></div></div><span class="toko-pct">10%</span></div>
+      <div class="toko-row"><span class="toko-label">Reserve</span><div class="toko-bar-wrap"><div class="toko-bar" style="width:5%"></div></div><span class="toko-pct">5%</span></div>
+    </div>
+    <div class="ca-section">
+      <div>
+        <div class="ca-lbl">CONTRACT ADDRESS</div>
+        <div class="ca-addr" id="ca-addr">Dropping on launch day — stay locked in</div>
+      </div>
+      <button class="ca-btn" onclick="copyCA()">Copy CA</button>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="fade-up">
+    <div class="sec-eyebrow">ROADMAP</div>
+    <h2 class="sec-title">The journey <span>to the moon</span></h2>
+    <p class="sec-sub">Four phases. One destination.</p>
+  </div>
+  <div class="road-grid fade-up">
+    <div class="road-card done">
+      <div class="road-phase">PHASE 1</div>
+      <span class="road-tag done">DONE</span>
+      <div class="road-title">Birth of the Crew</div>
+      <div class="road-items">
+        <div class="road-item"><div class="road-dot"></div>Logo & branding</div>
+        <div class="road-item"><div class="road-dot"></div>Twitter launched</div>
+        <div class="road-item"><div class="road-dot"></div>Discord created</div>
+        <div class="road-item"><div class="road-dot"></div>Website live</div>
+      </div>
+    </div>
+    <div class="road-card active">
+      <div class="road-phase">PHASE 2</div>
+      <span class="road-tag now">NOW</span>
+      <div class="road-title">Building the Armada</div>
+      <div class="road-items">
+        <div class="road-item"><div class="road-dot"></div>1K Twitter followers</div>
+        <div class="road-item"><div class="road-dot"></div>1K Discord members</div>
+        <div class="road-item"><div class="road-dot"></div>TikTok presence</div>
+        <div class="road-item"><div class="road-dot"></div>Creator collabs</div>
+      </div>
+    </div>
+    <div class="road-card">
+      <div class="road-phase">PHASE 3</div>
+      <span class="road-tag next">NEXT</span>
+      <div class="road-title">Pre-Launch Hype Arc</div>
+      <div class="road-items">
+        <div class="road-item"><div class="road-dot"></div>Smart contract deploy</div>
+        <div class="road-item"><div class="road-dot"></div>Early holder whitelist</div>
+        <div class="road-item"><div class="road-dot"></div>DEX listing prep</div>
+        <div class="road-item"><div class="road-dot"></div>Hype campaign</div>
+      </div>
+    </div>
+    <div class="road-card">
+      <div class="road-phase">PHASE 4</div>
+      <span class="road-tag big">MOON ARC</span>
+      <div class="road-title">Launch & Ascension</div>
+      <div class="road-items">
+        <div class="road-item"><div class="road-dot"></div>Game release day drop</div>
+        <div class="road-item"><div class="road-dot"></div>Full DEX listing</div>
+        <div class="road-item"><div class="road-dot"></div>Mass marketing push</div>
+        <div class="road-item"><div class="road-dot"></div>TO THE MOON 🌕</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section id="join">
+  <div class="fade-up">
+    <div class="sec-eyebrow">COMMUNITY</div>
+    <h2 class="sec-title">Join the <span>Straw Hat Crew</span></h2>
+    <p class="sec-sub">Get in before the moon arc starts. This is your Laugh Tale moment.</p>
+  </div>
+  <div class="social-row fade-up">
+    <a href="https://twitter.com" class="social-card tw" target="_blank">
+      <div class="social-icon">𝕏</div>
+      <div>
+        <div class="social-name">Twitter / X</div>
+        <div class="social-sub">9 followers — follow & spread the word</div>
+      </div>
+      <div class="social-arrow">→</div>
+    </a>
+    <a href="https://discord.com" class="social-card dc" target="_blank">
+      <div class="social-icon">🎮</div>
+      <div>
+        <div class="social-name">Discord</div>
+        <div class="social-sub">15 members — join the pirate crew</div>
+      </div>
+      <div class="social-arrow">→</div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">$RELLMOON</div>
+  <p>The unofficial Rell Sea memecoin — built by the community, for the community.</p>
+  <p class="disc">$RellMoon is an unofficial fan memecoin. Not affiliated with Rell Sea, RELL Games, or Eiichiro Oda / One Piece. Crypto is speculative — only invest what you can afford to lose. This is not financial advice.</p>
+</footer>
+
+<script>
+function copyCA(){
+  const t=document.getElementById('ca-addr').innerText;
+  navigator.clipboard.writeText(t).then(()=>{
+    const b=document.querySelector('.ca-btn');
+    b.textContent='Copied!';
+    setTimeout(()=>b.textContent='Copy CA',2000);
+  });
+}
+
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('visible')}
+  });
+},{threshold:0.12});
+document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
